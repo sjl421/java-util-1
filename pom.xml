@@ -39,12 +39,6 @@
             <artifactId>commons-jexl3</artifactId>
             <version>3.1</version>
         </dependency>
-        <!-- 强大的反射框架，性能超优 -->
-        <dependency>
-            <groupId>cglib</groupId>
-            <artifactId>cglib</artifactId>
-            <version>3.2.6</version>
-        </dependency>
         <!-- google的json处理工具-->
         <dependency>
             <groupId>com.google.code.gson</groupId>
@@ -52,5 +46,13 @@
             <version>2.8.2</version>
         </dependency>
         <!-- util end -->
+
+        <!-- 曾经强大的反射框架，经测试低于java8 -->
+        <dependency>
+            <groupId>cglib</groupId>
+            <artifactId>cglib</artifactId>
+            <version>3.2.6</version>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
 </project>

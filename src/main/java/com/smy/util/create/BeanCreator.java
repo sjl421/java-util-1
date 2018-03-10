@@ -1,15 +1,19 @@
 package com.smy.util.create;
 
 import com.smy.util.common.ObjectUtil;
-import net.sf.cglib.beans.BeanMap;
-import net.sf.cglib.core.ReflectUtils;
 
-import java.beans.PropertyDescriptor;
+import java.lang.reflect.Field;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.stream.Stream;
 
 /**
+ * bean对象创建。
+ * 经基于java8的测试:
+ * 1、{@link java.beans.PropertyDescriptor}性能低于{@link java.lang.reflect.Field}
+ * 2、java8 性能优于cglib
  * <p>Author: smy
  * <p>Date: 2018/2/1
  */
@@ -17,7 +21,7 @@ public class BeanCreator<T> implements Creator<T> {
 
     private Class<T> paramType;
 
-    private PropertyDescriptor[] properties;
+    private List<Field> fields;
 
     private Map<Class, Creator> typeCreators = new HashMap<>();
 
@@ -37,7 +41,16 @@ public class BeanCreator<T> implements Creator<T> {
 
     public void setParamType(Class<T> paramType) {
         this.paramType = paramType;
-        properties = ReflectUtils.getBeanProperties(paramType);
+        this.fields = getField(paramType);
+    }
+
+    private List<Field> getField(Class c) {
+        List<Field> fields = new ArrayList<>();
+        while (c != Object.class) {
+            Stream.of(c.getDeclaredFields()).forEach(f -> fields.add(f));
+            c = c.getSuperclass();
+        }
+        return fields;
     }
 
     protected void initType() {
@@ -68,18 +81,19 @@ public class BeanCreator<T> implements Creator<T> {
 
     @Override
     public T create() {
-        BeanMap beanMap = BeanMap.create(ObjectUtil.newInstance(paramType));
-        Stream.of(properties)
-                .forEach(property -> beanMap.put(property.getName(), findFieldCreator(property).createOne()));
-        return (T) beanMap.getBean();
+        T t = ObjectUtil.newInstance(paramType);
+        fields.forEach(f -> {
+            ObjectUtil.set(t, f, findFieldCreator(f).createOne());
+        });
+        return t;
     }
 
-    private Creator findFieldCreator(PropertyDescriptor property) {
+    private Creator findFieldCreator(Field property) {
         Creator creator = fieldCreators.get(property.getName());
         if (creator != null) {
             return creator;
         }
-        creator = typeCreators.get(property.getPropertyType());
+        creator = typeCreators.get(property.getType());
         return creator == null ? defaultCreator : creator;
     }
 

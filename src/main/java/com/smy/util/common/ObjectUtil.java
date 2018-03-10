@@ -1,17 +1,15 @@
 package com.smy.util.common;
 
 import com.google.gson.internal.$Gson$Types;
-import net.sf.cglib.proxy.InvocationHandler;
-import net.sf.cglib.proxy.Proxy;
 
 import java.io.File;
-import java.lang.reflect.Method;
-import java.lang.reflect.ParameterizedType;
-import java.lang.reflect.Type;
+import java.lang.reflect.*;
 import java.net.JarURLConnection;
 import java.net.URL;
 import java.net.URLDecoder;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Enumeration;
+import java.util.List;
 import java.util.function.Predicate;
 import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
@@ -37,6 +35,14 @@ public class ObjectUtil {
         try {
             return c.newInstance();
         } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public static void set(Object o, Field field, Object v) {
+        try {
+            field.set(o, v);
+        } catch (IllegalAccessException e) {
             throw new RuntimeException(e);
         }
     }
