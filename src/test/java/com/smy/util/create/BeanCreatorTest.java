@@ -2,7 +2,6 @@ package com.smy.util.create;
 
 import com.smy.model.BigBean;
 import com.smy.model.SmallBean;
-import com.smy.model.User;
 import net.sf.cglib.beans.BeanMap;
 import net.sf.cglib.core.ReflectUtils;
 import org.testng.annotations.DataProvider;
@@ -10,8 +9,6 @@ import org.testng.annotations.Test;
 
 import java.beans.PropertyDescriptor;
 import java.lang.reflect.Field;
-
-import static org.testng.Assert.*;
 
 /**
  * <p>Author: smy
@@ -81,11 +78,9 @@ public class BeanCreatorTest {
         for (int i = 0; i < count; i++) {
             o = c.newInstance();
             beanMap = BeanMap.create(o);
-            for (PropertyDescriptor field : properties) {
-                for (PropertyDescriptor property : properties) {
-                    beanMap.put(property.getName(), 100);
-                    o = beanMap.getBean();
-                }
+            for (PropertyDescriptor property : properties) {
+                beanMap.put(property.getName(), 100);
+                o = beanMap.getBean();
             }
         }
         System.out.println("Cglib2:" + count + ":" + (System.currentTimeMillis() - time));
