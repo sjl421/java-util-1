@@ -49,7 +49,6 @@ public class BeanCreatorTest {
 
     @Test(dataProvider = "data",enabled = false)
     public void testCglib1(Class c, int count) throws Exception {
-        PropertyDescriptor[] properties = ReflectUtils.getBeanProperties(c);
         Object o = c.newInstance();
         BeanMap beanMap = BeanMap.create(o);
         Field[] fields = c.getDeclaredFields();
