@@ -13,6 +13,7 @@ import java.util.List;
 import java.util.function.Predicate;
 import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
+import java.util.stream.Stream;
 
 /**
  * 对象相关操作工具包。
@@ -20,6 +21,16 @@ import java.util.jar.JarFile;
  * <p>Date: 2016/8/19
  */
 public class ObjectUtil {
+
+
+    public static List<Field> getFields(Class c) {
+        List<Field> fields = new ArrayList<>();
+        while (c != Object.class) {
+            Stream.of(c.getDeclaredFields()).forEach(f -> fields.add(f));
+            c = c.getSuperclass();
+        }
+        return fields;
+    }
 
 
     public static <T extends Cloneable> T clone(T object) {

@@ -41,16 +41,7 @@ public class BeanCreator<T> implements Creator<T> {
 
     public void setParamType(Class<T> paramType) {
         this.paramType = paramType;
-        this.fields = getField(paramType);
-    }
-
-    private List<Field> getField(Class c) {
-        List<Field> fields = new ArrayList<>();
-        while (c != Object.class) {
-            Stream.of(c.getDeclaredFields()).forEach(f -> fields.add(f));
-            c = c.getSuperclass();
-        }
-        return fields;
+        this.fields = ObjectUtil.getFields(paramType);
     }
 
     protected void initType() {
