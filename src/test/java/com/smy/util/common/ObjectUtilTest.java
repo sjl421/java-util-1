@@ -12,8 +12,8 @@ import java.util.List;
 import static org.testng.Assert.*;
 
 /**
- * <p>Author: smy
- * <p>Date: 2018/2/23
+ * @author smy
+ * @since 2018/2/23
  */
 public class ObjectUtilTest {
     User user = new User("test", "Jack", 10);

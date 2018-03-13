@@ -4,8 +4,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * <p>Author: smy
- * <p>Date: 2018/1/10
+ * @author smy
+ * @since 2018/1/10
  */
 public class MapCreator<K, V> implements Creator<Map<K, V>> {
 

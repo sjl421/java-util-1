@@ -1,8 +1,8 @@
 package com.smy.util.common;
 
 /**
- * <p>Author: smy
- * <p>Date: 2018/2/24
+ * @author smy
+ * @since 2018/2/24
  */
 public class StringUtil {
     public static String firstLower(String s) {

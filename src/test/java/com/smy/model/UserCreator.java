@@ -6,8 +6,8 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 /**
- * <p>Author: smy
- * <p>Date: 2018/3/8
+ * @author smy
+ * @since 2018/3/8
  */
 public class UserCreator extends BeanCreator<User> {
 

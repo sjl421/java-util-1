@@ -1,8 +1,8 @@
 package com.smy.model;
 
 /**
- * <p>Author: smy
- * <p>Date: 2018/3/10
+ * @author smy
+ * @since 2018/3/10
  */
 public class BigBean {
     private int arg0;

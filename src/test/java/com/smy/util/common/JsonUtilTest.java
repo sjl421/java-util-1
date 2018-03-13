@@ -9,8 +9,8 @@ import java.util.List;
 import static org.testng.Assert.assertEquals;
 
 /**
- * <p>Author: smy
- * <p>Date: 2018/2/23
+ * @author smy
+ * @since 2018/2/23
  */
 public class JsonUtilTest {
     User user = new User("test", "Jack", 10);

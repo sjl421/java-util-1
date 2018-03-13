@@ -17,8 +17,8 @@ import java.util.stream.Stream;
 
 /**
  * 对象相关操作工具包。
- * <p>Author: smy
- * <p>Date: 2016/8/19
+ * @author smy
+ * @since 2016/8/19
  */
 public class ObjectUtil {
 
@@ -50,13 +50,7 @@ public class ObjectUtil {
         }
     }
 
-    public static void set(Object o, Field field, Object v) {
-        try {
-            field.set(o, v);
-        } catch (IllegalAccessException e) {
-            throw new RuntimeException(e);
-        }
-    }
+
 
     public static <T> T newProxyInstance(Class<T> c, InvocationHandler methodProxy) {
         return (T) Proxy.newProxyInstance(c.getClassLoader(), new Class[]{c}, methodProxy);

@@ -1,8 +1,8 @@
 package com.smy.util.create;
 
 /**
- * <p>Author: smy
- * <p>Date: 2018/1/10
+ * @author smy
+ * @since 2018/1/10
  */
 public class SeqCreator<T> extends CollectionCreator<T> {
 

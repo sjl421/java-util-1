@@ -8,8 +8,8 @@ import java.io.File;
 import static org.testng.Assert.assertEquals;
 
 /**
- * <p>Author: smy
- * <p>Date: 2018/3/8
+ * @author smy
+ * @since 2018/3/8
  */
 public class IOUtilTest {
     @Test

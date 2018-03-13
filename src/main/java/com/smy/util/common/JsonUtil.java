@@ -9,8 +9,9 @@ import java.util.Date;
 
 /**
  * Json格式转换工具。
- * <p>Author: smy
- * <p>Date: 2018/1/7
+ * @author smy
+ * @since 2018/1/7
+ * @see com.google.gson
  */
 public class JsonUtil {
 

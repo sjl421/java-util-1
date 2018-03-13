@@ -8,8 +8,8 @@ import java.util.zip.GZIPInputStream;
 import java.util.zip.GZIPOutputStream;
 
 /**
- * <p>Author: smy
- * <p>Date: 2018/3/8
+ * @author smy
+ * @since 2018/3/8
  */
 public class IOUtil {
 

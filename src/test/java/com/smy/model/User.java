@@ -1,8 +1,8 @@
 package com.smy.model;
 
 /**
- * <p>Author: smy
- * <p>Date: 2018/2/23
+ * @author smy
+ * @since 2018/2/23
  */
 public class User implements Cloneable {
     private String id;

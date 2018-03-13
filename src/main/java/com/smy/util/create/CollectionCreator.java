@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * <p>Author: smy
- * <p>Date: 2018/1/31
+ * @author smy
+ * @since 2018/1/31
  */
 public abstract class CollectionCreator<T> implements Creator<T> {
 

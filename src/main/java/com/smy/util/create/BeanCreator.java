@@ -14,8 +14,9 @@ import java.util.stream.Stream;
  * 经基于java8的测试:
  * 1、{@link java.beans.PropertyDescriptor}性能低于{@link java.lang.reflect.Field}
  * 2、java8 性能优于cglib
- * <p>Author: smy
- * <p>Date: 2018/2/1
+ *
+ * @author smy
+ * @since 2018/2/1
  */
 public class BeanCreator<T> implements Creator<T> {
 
@@ -42,6 +43,9 @@ public class BeanCreator<T> implements Creator<T> {
     public void setParamType(Class<T> paramType) {
         this.paramType = paramType;
         this.fields = ObjectUtil.getFields(paramType);
+        for (Field field : fields) {
+            field.setAccessible(true);
+        }
     }
 
     protected void initType() {
@@ -74,9 +78,17 @@ public class BeanCreator<T> implements Creator<T> {
     public T create() {
         T t = ObjectUtil.newInstance(paramType);
         fields.forEach(f -> {
-            ObjectUtil.set(t, f, findFieldCreator(f).createOne());
+            set(t, f, findFieldCreator(f).createOne());
         });
         return t;
+    }
+
+    private static void set(Object o, Field field, Object v) {
+        try {
+            field.set(o, v);
+        } catch (IllegalAccessException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     private Creator findFieldCreator(Field property) {

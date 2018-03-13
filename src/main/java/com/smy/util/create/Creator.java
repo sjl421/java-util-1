@@ -6,8 +6,8 @@ import java.util.stream.Stream;
 
 /**
  * <p>创建者接口。
- * <p>Author: smy
- * <p>Date: 2016/8/22
+ * @author smy
+ * @since 2016/8/22
  */
 @FunctionalInterface
 public interface Creator<T> {

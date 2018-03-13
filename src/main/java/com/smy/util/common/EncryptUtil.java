@@ -5,8 +5,8 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 /**
- * <p>Author: smy
- * <p>Date: 2018/3/9
+ * @author smy
+ * @since 2018/3/9
  */
 public class EncryptUtil {
 
